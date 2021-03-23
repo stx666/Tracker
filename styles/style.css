@@ -37,10 +37,6 @@
   color: #ffff !important;
   font-size: 26px;
 }
-.navbar .fa:hover {
-  color: #f7c80c !important;
-  font-size: 26px;
-}
 /* @media only screen and (max-width: 1000px)
 {
     .nav-link:hover{
