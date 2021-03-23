@@ -1,0 +1,79 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Source Sans Pro", sans-serif;
+}
+.menu-bar {
+  background: -webkit-linear-gradient(top, #35364c, #2c2836);
+  background: #2c2836;
+}
+.nav-link {
+  font-size: 16px;
+  margin: 3px;
+  color: #ffff !important;
+  font-weight: 500;
+}
+.nav-link:hover {
+  color: #f7c80c !important;
+}
+.navbar-brand img {
+  width: 21%;
+  height: auto;
+  margin-left: 20px;
+}
+.navbar-nav {
+  text-align: right;
+  margin-right: 20px;
+}
+.navbar-nav .dropdown {
+  margin-right: 25px;
+}
+.menu-bar .navbar-toggler {
+  padding-right: 20px;
+  outline: none !important;
+  border: none !important;
+}
+.navbar .fa {
+  color: #ffff !important;
+  font-size: 26px;
+}
+.navbar .fa:hover {
+  color: #f7c80c !important;
+  font-size: 26px;
+}
+/* @media only screen and (max-width: 1000px)
+{
+    .nav-link:hover{
+        border-bottom: none!important;
+    }
+} */
+
+.jumbotron {
+  background-image: url("https://i.imgur.com/8a7OFPu.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffff !important;
+}
+
+.jumbotron h1 {
+  color: #ffff !important;
+}
+
+.jumbotron hr {
+  background-color: #ffff;
+}
+.jumbotron .table {
+  color: #ffff;
+}
+
+.jumbotron .table-hover {
+  font-weight: 600;
+  color: initial;
+}
+
+@media screen and (max-width: 600px) {
+  .customsmallmedia {
+    width: 215px;
+  }
+}
