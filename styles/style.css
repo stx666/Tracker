@@ -37,13 +37,10 @@
   color: #ffff !important;
   font-size: 26px;
 }
-/* @media only screen and (max-width: 1000px)
-{
-    .nav-link:hover{
-        border-bottom: none!important;
-    }
-} */
-
+.navbar .fa:hover {
+  color: #f7c80c !important;
+  font-size: 26px;
+}
 .jumbotron {
   background-image: url("https://i.imgur.com/8a7OFPu.jpg");
   background-position: center;
@@ -51,23 +48,15 @@
   background-size: cover;
   color: #ffff !important;
 }
-
 .jumbotron h1 {
   color: #ffff !important;
 }
-
 .jumbotron hr {
   background-color: #ffff;
 }
 .jumbotron .table {
   color: #ffff;
 }
-
-.jumbotron .table-hover {
-  font-weight: 600;
-  color: initial;
-}
-
 @media screen and (max-width: 600px) {
   .customsmallmedia {
     width: 215px;
