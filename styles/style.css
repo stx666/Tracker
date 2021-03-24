@@ -57,6 +57,9 @@
 .jumbotron .table {
   color: #ffff;
 }
+.jumbotron .table-hover tbody tr:hover td {
+  color: #ffff;
+}
 @media screen and (max-width: 600px) {
   .customsmallmedia {
     width: 215px;
