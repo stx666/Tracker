@@ -10,7 +10,7 @@ xmlhttp.onreadystatechange = function () {
 
         for (i = 0; i < data.length; i++) {
             // let row = data[i];
-            let event = data[i]["gsx$event"]["$t"];
+            let event = data[i]["gsx$_cn6ca"]["$t"];
             let startdate = data[i]["gsx$startdate"]["$t"];
             let eventlength = data[i]["gsx$eventlength"]["$t"];
             let format = data[i]["gsx$format"]["$t"];
@@ -42,6 +42,8 @@ $("#seachTable").on("keyup", function(){
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
 });
-
-xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1oM0L9V1yrfgT2pj0oEzNE3YC9XVYsGPp9-tQ4LFaURE/od6/public/values?alt=json", true);
+xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1qoQgpwtAxbS3jrrUgiXpVbcivkotSQdy6KjyG3nDQGI/od6/public/values?alt=json", true);
+// xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1oM0L9V1yrfgT2pj0oEzNE3YC9XVYsGPp9-tQ4LFaURE/od6/public/values?alt=json", true);
 xmlhttp.send();
+
+
