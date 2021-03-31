@@ -14,6 +14,9 @@
     <title>186th Tournament list</title>
     <!-- local style -->
     <link href="styles\style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css"
+        integrity="sha512-5RNDl2gYvm6wpoVAU4J2+cMGZQeE2o4/AksK/bi355p/C31aRibC93EYxXczXq3ja2PJj60uifzcocu2Ca2FBg=="
+        crossorigin="anonymous" />
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" rel="preconnect"
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -93,20 +96,19 @@
                 where.</p>
             <hr class="my-4">
             <div class="table-responsive">
-                <table class="table table-borderless table-hover">
+                <table class="table table-borderless table-hover" data-toggle="table" id="table">
                     <thead>
                         <tr>
-                            <th scope="col">Event</th>
-                            <th scope="col">Date Start</th>
-                            <th scope="col">Length</th>
-                            <th scope="col">Format</th>
-                            <th scope="col">Timezone</th>
-                            <th scope="col">Notes</th>
-                            <th scope="col">Link</th>
-                            <th scope="col">Tabletop TO</th>
+                            <th data-field="event" data-sortable="true" scope="col">Event</th>
+                            <th data-field="startdate" data-sortable="true" scope="col">Date Start</th>
+                            <th data-field="eventlength" data-sortable="true" scope="col">Length</th>
+                            <th data-field="format" data-sortable="true" scope="col">Format</th>
+                            <th data-field="zone" data-sortable="true" scope="col">Timezone</th>
+                            <th data-field="notes" scope="col">Notes</th>
+                            <th data-field="link" scope="col">Link</th>
+                            <th data-field="tableto" scope="col">Tabletop TO</th>
                         </tr>
                     </thead>
-                    <tbody id="demo"></tbody>
                 </table>
             </div>
         </div>
@@ -116,6 +118,9 @@
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script rel="preconnect" src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"
+        integrity="sha512-Wm00XTqNHcGqQgiDlZVpK4QIhO2MmMJfzNJfh8wwbBC9BR0FtdJwPqDhEYy8jCfKEhWWZe/LDB6FwY7YE9QhMg=="
         crossorigin="anonymous"></script>
     <script src="js/getdata.js" type="application/javascript"></script>
     <footer role="contentinfo">
