@@ -1,7 +1,6 @@
 let $table = $('#table')
 let tabledata = [];
 let xmlhttp = new XMLHttpRequest();
-let tmp1 = {};
 
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -9,36 +8,23 @@ xmlhttp.onreadystatechange = function () {
         let i;
 
         for (i = 0; i < data.length; i++) {
-            // let row = data[i];
+            if (!data[i].hasOwnProperty("gsx$_cn6ca")) { break; }
+
             let event = data[i]["gsx$_cn6ca"]["$t"];
             let startdate = data[i]["gsx$startdate"]["$t"];
             let eventlength = data[i]["gsx$eventlength"]["$t"];
             let format = data[i]["gsx$format"]["$t"];
             let zone = data[i]["gsx$timezone"]["$t"];
             let notes = data[i]["gsx$notes"]["$t"];
-            //let test1 = data[i]["gsx$facebookdiscord"]["$t"];
-            
-            //let tableto = data[i]["gsx$tabletopto"]["$t"];
 
             let link = "";
-            if(data[i].hasOwnProperty('gsx$_d180g')){
+            if(data[i].hasOwnProperty("gsx$_d180g")){
                 link = data[i]["gsx$_d180g"]["$t"];
             }
-            let tableto ="";
-            if(data[i].hasOwnProperty('gsx$_cssly')){
+            let tableto = "";
+            if(data[i].hasOwnProperty("gsx$_cssly")){
                 tableto = data[i]["gsx$_cssly"]["$t"];
             }
-            // if(thisSession.hasOwnProperty('merchant_id')){
-
-            // }
-            // let link = "";
-            //if (data[i]["gsx$_d180g"] !== "undefined") {
-            //    let link = data[i]["gsx$_d180g"]["$t"];
-            //}
-            // if (typeof data[i]["gsx$_d180g"] !== "undefined") {
-            //     let link = data[i]["gsx$_d180g"]["$t"];
-            // }
-
 
             tabledata.push({
                 'event': event,
@@ -52,10 +38,23 @@ xmlhttp.onreadystatechange = function () {
             });
         };
 
-        debugger;
         $table.bootstrapTable('load', tabledata);
     };
 };
+
+function discordFormatter(value, row) {
+   if(row.link.length > 0) {
+        return "<a href='" + row.link + "'>Click here...</a>";
+   }
+   return "";
+}
+
+function tabletoFormatter(value, row) {
+   if(row.tableto.length > 0) {
+        return "<a href='" + row.tableto + "'>Click here...</a>";
+   }
+   return "";
+}
 
 $("#seachTable").on("keyup", function(){
     var value = $(this).val().toLowerCase();
@@ -63,7 +62,7 @@ $("#seachTable").on("keyup", function(){
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
 });
-//xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1qoQgpwtAxbS3jrrUgiXpVbcivkotSQdy6KjyG3nDQGI/od6/public/values?alt=json", true);
+
 xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc/od6/public/values?alt=json", true);
 xmlhttp.send();
 

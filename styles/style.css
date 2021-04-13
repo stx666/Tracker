@@ -57,6 +57,9 @@
 .jumbotron .table {
   color: #ffff;
 }
+.jumbotron .table a {
+  color: #f7c80c !important;
+}
 .jumbotron .table-hover tbody tr:hover td {
   color: #ffff;
 }
