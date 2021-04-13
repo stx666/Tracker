@@ -16,8 +16,29 @@ xmlhttp.onreadystatechange = function () {
             let format = data[i]["gsx$format"]["$t"];
             let zone = data[i]["gsx$timezone"]["$t"];
             let notes = data[i]["gsx$notes"]["$t"];
-            let link = data[i]["gsx$facebookdiscord"]["$t"];
-            let tableto = data[i]["gsx$tabletopto"]["$t"];
+            //let test1 = data[i]["gsx$facebookdiscord"]["$t"];
+            
+            //let tableto = data[i]["gsx$tabletopto"]["$t"];
+
+            let link = "";
+            if(data[i].hasOwnProperty('gsx$_d180g')){
+                link = data[i]["gsx$_d180g"]["$t"];
+            }
+            let tableto ="";
+            if(data[i].hasOwnProperty('gsx$_cssly')){
+                tableto = data[i]["gsx$_cssly"]["$t"];
+            }
+            // if(thisSession.hasOwnProperty('merchant_id')){
+
+            // }
+            // let link = "";
+            //if (data[i]["gsx$_d180g"] !== "undefined") {
+            //    let link = data[i]["gsx$_d180g"]["$t"];
+            //}
+            // if (typeof data[i]["gsx$_d180g"] !== "undefined") {
+            //     let link = data[i]["gsx$_d180g"]["$t"];
+            // }
+
 
             tabledata.push({
                 'event': event,
