@@ -3,6 +3,10 @@
   padding: 0px;
   font-family: "Source Sans Pro", sans-serif;
 }
+body {
+  background: -webkit-linear-gradient(top, #35364c, #2c2836);
+  /* background: #2c2836; */
+}
 .menu-bar {
   background: -webkit-linear-gradient(top, #35364c, #2c2836);
   background: #2c2836;
@@ -42,28 +46,32 @@
   font-size: 26px;
 }
 .jumbotron {
-  /* background-image: url("https://i.imgur.com/8a7OFPu.jpg");
+  margin-bottom: 1rem;
+  background-image: url("https://i.imgur.com/8a7OFPu.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; */
-  background: -webkit-linear-gradient(top, #35364c, #2c2836);
-  /* background: #2c2836; */
+  background-size: cover;
   color: #ffff !important;
 }
-.jumbotron h1 {
+body h1 {
   color: #ffff !important;
 }
-.jumbotron hr {
+body hr {
   background-color: #ffff;
 }
-.jumbotron .table {
+body .table {
   color: #ffff;
 }
-.jumbotron .table a {
+body .table a {
   color: #f7c80c !important;
 }
-.jumbotron .table-hover tbody tr:hover td {
+body .table-hover tbody tr:hover td {
   color: #ffff;
+}
+@media screen and (min-width: 576px) {
+  .jumbotron {
+    padding: 2rem 2rem;
+  }
 }
 @media screen and (max-width: 600px) {
   .customsmallmedia {
