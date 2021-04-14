@@ -12,6 +12,7 @@ xmlhttp.onreadystatechange = function () {
 
             let event = data[i]["gsx$_cn6ca"]["$t"];
             let startdate = data[i]["gsx$startdate"]["$t"];
+            let eventDate = new Date(startdate);
             let eventlength = data[i]["gsx$eventlength"]["$t"];
             let format = data[i]["gsx$format"]["$t"];
             let zone = data[i]["gsx$timezone"]["$t"];
@@ -25,10 +26,10 @@ xmlhttp.onreadystatechange = function () {
             if(data[i].hasOwnProperty("gsx$_cssly")){
                 tableto = data[i]["gsx$_cssly"]["$t"];
             }
-
+ 
             tabledata.push({
                 'event': event,
-                'startdate': startdate,
+                'startdate': eventDate.toISOString().split("T")[0],
                 'eventlength':eventlength ,
                 'format': format,
                 'zone': zone,
@@ -44,14 +45,14 @@ xmlhttp.onreadystatechange = function () {
 
 function discordFormatter(value, row) {
    if(row.link.length > 0) {
-        return "<a href='" + row.link + "'>Click here...</a>";
+        return "<a href='" + row.link + "'>Click</a>";
    }
    return "";
 }
 
 function tabletoFormatter(value, row) {
    if(row.tableto.length > 0) {
-        return "<a href='" + row.tableto + "'>Click here...</a>";
+        return "<a href='" + row.tableto + "'>Click</a>";
    }
    return "";
 }

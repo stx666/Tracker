@@ -42,10 +42,12 @@
   font-size: 26px;
 }
 .jumbotron {
-  background-image: url("https://i.imgur.com/8a7OFPu.jpg");
+  /* background-image: url("https://i.imgur.com/8a7OFPu.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  background: -webkit-linear-gradient(top, #35364c, #2c2836);
+  /* background: #2c2836; */
   color: #ffff !important;
 }
 .jumbotron h1 {
