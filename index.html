@@ -9,7 +9,7 @@
     <meta name="author" content="Simon Tournay">
     <meta property="og:title" content="Home | 186th Squadron" />
     <meta property="og:type" content="website" />
-    <!-- <meta property="og:url" content="http://186th.org" /> -->
+    <meta property="og:url" content="https://www.186th.org" />
     <meta name="generator" content="Hugo 0.80.0">
     <title>186th Tournament Tracker</title>
     <!-- Preconnect -->
@@ -103,15 +103,19 @@
                     data-sort-order="asc" id="table">
                     <thead>
                         <tr>
-                            <th data-field="event" data-sortable="true" scope="col">Event</th>
-                            <th data-field="startdate" data-sortable="true" scope="col">Date
+                            <th class="midcol" data-field="event" data-sortable="true" scope="col">Event</th>
+                            <th class="smlcol" data-field="startdate" data-sortable="true" scope="col">Date
                             </th>
-                            <th data-field="eventlength" data-sortable="true" scope="col">Length</th>
-                            <th data-field="format" data-sortable="true" scope="col">Format</th>
-                            <th data-field="zone" data-sortable="true" scope="col">Timezone</th>
-                            <!-- <th data-field="notes" scope="col">Notes</th> -->
-                            <th data-field="link" data-formatter="discordFormatter" scope="col">Link</th>
-                            <th data-field="tableto" data-formatter="tabletoFormatter" scope="col">TTO</th>
+                            <th class="midcol" data-field="eventlength" data-sortable="true" scope="col">Length
+                            </th>
+                            <th class="smlcol" data-field="format" data-sortable="true" scope="col">Format</th>
+                            <th class="smlcol" data-field="zone" data-sortable="true" scope="col">Timezone</th>
+                            <th class="d-none d-md-block lrgcol" data-field="notes" scope="col">Notes
+                            </th>
+                            <th class="smlcol" data-field="link" data-formatter="discordFormatter" scope="col">
+                                Link</th>
+                            <th class="smlcol" data-field="tableto" data-formatter="tabletoFormatter" scope="col">TTO
+                            </th>
                         </tr>
                     </thead>
                 </table>
