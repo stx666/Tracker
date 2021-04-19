@@ -63,11 +63,39 @@ body .table {
   color: #ffff;
 }
 body .table a {
+  color: #ffff !important;
+}
+body .table a:hover {
   color: #f7c80c !important;
 }
 body .table-hover tbody tr:hover td {
   color: #ffff;
 }
+
+tbody td.smlcol,
+tbody td.midcol,
+tbody td.lrgcol {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+tbody td.smlcol {
+  max-width: 100px;
+}
+tbody td.midcol {
+  max-width: 150px;
+}
+tbody td.lrgcol {
+  max-width: 200px;
+}
+tbody td:hover.smlcol,
+tbody td:hover.midcol,
+tbody td:hover.lrgcol {
+  text-overflow: clip;
+  white-space: normal;
+  word-break: break-all;
+}
+
 @media screen and (min-width: 576px) {
   .jumbotron {
     padding: 2rem 2rem;
