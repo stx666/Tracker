@@ -105,4 +105,7 @@ tbody td:hover.lrgcol {
   .customsmallmedia {
     width: 215px;
   }
+  .display-4 {
+    font-size: 2.5rem;
+  }
 }
