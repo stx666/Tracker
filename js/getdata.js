@@ -45,7 +45,7 @@ xmlhttp.onreadystatechange = function () {
 
 function discordFormatter(value, row) {
    if(row.link.length > 0) {
-        return "<a href='" + row.link + "'>Click</a>";
+        return "<a href='" + row.link + "' target='_blank'>Click</a>";
    }
    return "";
 }
