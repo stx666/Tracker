@@ -52,7 +52,7 @@ function discordFormatter(value, row) {
 
 function tabletoFormatter(value, row) {
    if(row.tableto.length > 0) {
-        return "<a href='" + row.tableto + "'>Click</a>";
+        return "<a href='" + row.tableto + "' target='_blank'>Click</a>";
    }
    return "";
 }
