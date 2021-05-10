@@ -1,4 +1,5 @@
-let $table = $('#table')
+let $filterDate = $('#switchPastEvents');
+let $table = $('#table');
 let tabledata = [];
 let xmlhttp = new XMLHttpRequest();
 
@@ -30,7 +31,7 @@ xmlhttp.onreadystatechange = function () {
             tabledata.push({
                 'event': event,
                 'startdate': eventDate.toISOString().split("T")[0],
-                'eventlength':eventlength ,
+                'eventlength':eventlength,
                 'format': format,
                 'zone': zone,
                 'notes': notes,
@@ -40,21 +41,42 @@ xmlhttp.onreadystatechange = function () {
         };
 
         $table.bootstrapTable('load', tabledata);
+        dateFilter();
     };
-};
+}
 
 function discordFormatter(value, row) {
    if(row.link.length > 0) {
-        return "<a href='" + row.link + "' target='_blank'>Click</a>";
+        return row.link.startsWith("loading") ? "" : "<a href='" + row.link + "' target='_blank'>Click</a>";
    }
    return "";
 }
 
 function tabletoFormatter(value, row) {
    if(row.tableto.length > 0) {
-        return "<a href='" + row.tableto + "' target='_blank'>Click</a>";
+        return row.tableto.startsWith("loading") ? "" : "<a href='" + row.tableto + "' target='_blank'>Click</a>";
    }
    return "";
+}
+
+function dateFilter(){
+    let currentDate = new Date();
+    let hideDates = $filterDate.is(":checked");
+    $("#table tbody tr").each(function() // iterate through each tr inside the table
+    {
+        let data = $(this).find('td').eq(1).text();
+        if(hideDates){
+            if(currentDate.getTime() > new Date(data).getTime()){
+                $(this).hide();
+            }
+            else{
+                $(this).show();
+            }
+        }
+        else{
+            $(this).show();
+        }
+    });
 }
 
 $("#seachTable").on("keyup", function(){
@@ -62,8 +84,15 @@ $("#seachTable").on("keyup", function(){
     $("#table tbody tr").filter(function(){
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
-});
+    if(value.length==0) {
+        dateFilter();
+    }
+})
+
+$filterDate.on("click", function(){
+    dateFilter();
+})
 
 xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc/od6/public/values?alt=json", true);
+// xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1ok1QgOYIRBa6VUapfpdqYYr8CJk4uvX2lbLYm8gAyf4/od6/public/values?alt=json", true);
 xmlhttp.send();
-
