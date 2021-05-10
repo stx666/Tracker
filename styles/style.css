@@ -71,6 +71,12 @@ body .table a:hover {
 body .table-hover tbody tr:hover td {
   color: #ffff;
 }
+body .custom-switch{
+  margin: 10px 0px 10px 0px;
+}
+body label {
+  color: #ffff !important;
+}
 
 tbody td.smlcol,
 tbody td.midcol,

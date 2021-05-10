@@ -106,7 +106,10 @@
         </div>
         <div class="container">
             <input class="form-control" id="seachTable" type="text" placeholder="Seach..">
-            <br>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="switchPastEvents" checked>
+                <label class="custom-control-label" for="switchPastEvents">Hide Past events</label>
+            </div>
             <div class="table-responsive">
                 <table class="table table-borderless table-hover" data-toggle="table" data-sort-name="startdate"
                     data-sort-order="asc" id="table">
