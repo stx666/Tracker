@@ -94,5 +94,4 @@ $filterDate.on("click", function(){
 })
 
 xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc/od6/public/values?alt=json", true);
-// xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1ok1QgOYIRBa6VUapfpdqYYr8CJk4uvX2lbLYm8gAyf4/od6/public/values?alt=json", true);
 xmlhttp.send();
