@@ -3,6 +3,12 @@ let $table = $('#table');
 let tabledata = [];
 let xmlhttp = new XMLHttpRequest();
 
+$table.on('sort.bs.table', function (e, name, order) {
+    setTimeout( function(){
+        dateFilter();
+    },125);
+})
+
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         let data = JSON.parse(this.responseText).feed.entry;
