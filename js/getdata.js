@@ -20,7 +20,7 @@ xmlhttp.onreadystatechange = function () {
       }
 
       let event = data[i]["gsx$_cn6ca"]["$t"];
-      let startdate = data[i]["gsx$startdate"]["$t"] + " -01:00";
+      let startdate = data[i]["gsx$startdate"]["$t"];
       let eventDate = new Date(startdate);
       let eventlength = data[i]["gsx$eventlength"]["$t"];
       let format = data[i]["gsx$format"]["$t"];
