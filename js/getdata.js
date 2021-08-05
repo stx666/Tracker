@@ -1,7 +1,9 @@
 let $filterDate = $("#switchPastEvents");
 let $table = $("#table");
 let tabledata = [];
-let xmlhttp = new XMLHttpRequest();
+const dataLink =
+  "https://spreadsheets.google.com/feeds/list/1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc/od6/public/values?alt=json";
+const xmlhttp = new XMLHttpRequest();
 
 $table.on("sort.bs.table", function (e, name, order) {
   setTimeout(function () {
@@ -105,9 +107,5 @@ $filterDate.on("click", function () {
   dateFilter();
 });
 
-xmlhttp.open(
-  "GET",
-  "https://spreadsheets.google.com/feeds/list/1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc/od6/public/values?alt=json",
-  true
-);
+xmlhttp.open("GET", dataLink, true);
 xmlhttp.send();
