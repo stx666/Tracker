@@ -1,103 +1,113 @@
-let $filterDate = $('#switchPastEvents');
-let $table = $('#table');
+let $filterDate = $("#switchPastEvents");
+let $table = $("#table");
 let tabledata = [];
 let xmlhttp = new XMLHttpRequest();
 
-$table.on('sort.bs.table', function (e, name, order) {
-    setTimeout( function(){
-        dateFilter();
-    },125);
-})
+$table.on("sort.bs.table", function (e, name, order) {
+  setTimeout(function () {
+    dateFilter();
+  }, 125);
+});
 
 xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText).feed.entry;
-        let i;
+  if (this.readyState == 4 && this.status == 200) {
+    let data = JSON.parse(this.responseText).feed.entry;
+    let i;
 
-        for (i = 0; i < data.length; i++) {
-            if (!data[i].hasOwnProperty("gsx$_cn6ca")) { break; }
+    for (i = 0; i < data.length; i++) {
+      if (!data[i].hasOwnProperty("gsx$_cn6ca")) {
+        break;
+      }
 
-            let event = data[i]["gsx$_cn6ca"]["$t"];
-            let startdate = data[i]["gsx$startdate"]["$t"];
-            let eventDate = new Date(startdate);
-            let eventlength = data[i]["gsx$eventlength"]["$t"];
-            let format = data[i]["gsx$format"]["$t"];
-            let zone = data[i]["gsx$timezone"]["$t"];
-            let notes = data[i]["gsx$notes"]["$t"];
+      let event = data[i]["gsx$_cn6ca"]["$t"];
+      let startdate = data[i]["gsx$startdate"]["$t"] + " -01:00";
+      let eventDate = new Date(startdate);
+      let eventlength = data[i]["gsx$eventlength"]["$t"];
+      let format = data[i]["gsx$format"]["$t"];
+      let zone = data[i]["gsx$timezone"]["$t"];
+      let notes = data[i]["gsx$notes"]["$t"];
 
-            let link = "";
-            if(data[i].hasOwnProperty("gsx$_d180g")){
-                link = data[i]["gsx$_d180g"]["$t"];
-            }
-            let tableto = "";
-            if(data[i].hasOwnProperty("gsx$_cssly")){
-                tableto = data[i]["gsx$_cssly"]["$t"];
-            }
- 
-            tabledata.push({
-                'event': event,
-                'startdate': eventDate.toISOString().split("T")[0],
-                'eventlength':eventlength,
-                'format': format,
-                'zone': zone,
-                'notes': notes,
-                'link': link,
-                'tableto':tableto
-            });
-        };
+      let link = "";
+      if (data[i].hasOwnProperty("gsx$_d180g")) {
+        link = data[i]["gsx$_d180g"]["$t"];
+      }
+      let tableto = "";
+      if (data[i].hasOwnProperty("gsx$_cssly")) {
+        tableto = data[i]["gsx$_cssly"]["$t"];
+      }
 
-        $table.bootstrapTable('load', tabledata);
-        dateFilter();
-    };
-}
+      tabledata.push({
+        event: event,
+        startdate: eventDate.toISOString().split("T")[0],
+        eventlength: eventlength,
+        format: format,
+        zone: zone,
+        notes: notes,
+        link: link,
+        tableto: tableto,
+      });
+    }
+
+    $table.bootstrapTable("load", tabledata);
+    dateFilter();
+  }
+};
 
 function discordFormatter(value, row) {
-   if(row.link.length > 0) {
-        return row.link.startsWith("loading") ? "" : "<a href='" + row.link + "' target='_blank'>Click</a>";
-   }
-   return "";
+  if (row.link.length > 0) {
+    return row.link.startsWith("loading")
+      ? ""
+      : "<a href='" + row.link + "' target='_blank'>Click</a>";
+  }
+  return "";
 }
 
 function tabletoFormatter(value, row) {
-   if(row.tableto.length > 0) {
-        return row.tableto.startsWith("loading") ? "" : "<a href='" + row.tableto + "' target='_blank'>Click</a>";
-   }
-   return "";
+  if (row.tableto.length > 0) {
+    return row.tableto.startsWith("loading")
+      ? ""
+      : "<a href='" + row.tableto + "' target='_blank'>Click</a>";
+  }
+  return "";
 }
 
-function dateFilter(){
-    let currentDate = new Date();
-    let hideDates = $filterDate.is(":checked");
-    $("#table tbody tr").each(function() // iterate through each tr inside the table
+function dateFilter() {
+  let currentDate = new Date();
+  let hideDates = $filterDate.is(":checked");
+  $("#table tbody tr").each(
+    function () // iterate through each tr inside the table
     {
-        let data = $(this).find('td').eq(1).text();
-        if(hideDates){
-            if(currentDate.getTime() > new Date(data).getTime()){
-                $(this).hide();
-            }
-            else{
-                $(this).show();
-            }
+      let data = $(this).find("td").eq(1).text();
+      if (hideDates) {
+        if (currentDate.getTime() > new Date(data).getTime()) {
+          $(this).hide();
+        } else {
+          $(this).show();
         }
-        else{
-            $(this).show();
-        }
-    });
+      } else {
+        $(this).show();
+      }
+    }
+  );
 }
 
-$("#seachTable").on("keyup", function(){
-    var value = $(this).val().toLowerCase();
-    $("#table tbody tr").filter(function(){
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-    if(value.length==0) {
-        dateFilter();
-    }
-})
-
-$filterDate.on("click", function(){
+$("#seachTable").on("keyup", function () {
+  var value = $(this).val().toLowerCase();
+  $("#table tbody tr").filter(function () {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  });
+  if (value.length == 0) {
     dateFilter();
-})
+  }
+});
 
-xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc/od6/public/values?alt=json", true);
+$filterDate.on("click", function () {
+  dateFilter();
+});
+
+xmlhttp.open(
+  "GET",
+  "https://spreadsheets.google.com/feeds/list/1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc/od6/public/values?alt=json",
+  true
+);
 xmlhttp.send();
