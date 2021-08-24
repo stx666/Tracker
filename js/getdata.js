@@ -72,7 +72,7 @@ fetch(
     for (let i = 0; i < data.length; i++) {
       let event = data[i].c[0] === null ? "" : data[i].c[0].v;
       let startdate = data[i].c[1] === null ? "" : data[i].c[1];
-      let eventDate = new Date(startdate.f);
+      let eventDate = new Date(startdate.f + " UTC");
       let eventlength = data[i].c[2] === null ? "" : data[i].c[2].v;
       let format = data[i].c[3] === null ? "" : data[i].c[3].v;
       let zone = data[i].c[4] === null ? "" : data[i].c[4].v;
