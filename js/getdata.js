@@ -1,57 +1,13 @@
-let $filterDate = $("#switchPastEvents");
-let $table = $("#table");
+const $filterDate = $("#switchPastEvents");
+const $table = $("#table");
+const spreadsheetId = "1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc";
 let tabledata = [];
-let xmlhttp = new XMLHttpRequest();
 
 $table.on("sort.bs.table", function (e, name, order) {
   setTimeout(function () {
     dateFilter();
   }, 125);
 });
-
-xmlhttp.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    let data = JSON.parse(this.responseText).feed.entry;
-    let i;
-
-    for (i = 0; i < data.length; i++) {
-      if (!data[i].hasOwnProperty("gsx$_cn6ca")) {
-        break;
-      }
-
-      let event = data[i]["gsx$_cn6ca"]["$t"];
-      let startdate = data[i]["gsx$startdate"]["$t"];
-      let eventDate = new Date(startdate);
-      let eventlength = data[i]["gsx$eventlength"]["$t"];
-      let format = data[i]["gsx$format"]["$t"];
-      let zone = data[i]["gsx$timezone"]["$t"];
-      let notes = data[i]["gsx$notes"]["$t"];
-
-      let link = "";
-      if (data[i].hasOwnProperty("gsx$_d180g")) {
-        link = data[i]["gsx$_d180g"]["$t"];
-      }
-      let tableto = "";
-      if (data[i].hasOwnProperty("gsx$_cssly")) {
-        tableto = data[i]["gsx$_cssly"]["$t"];
-      }
-
-      tabledata.push({
-        event: event,
-        startdate: eventDate.toISOString().split("T")[0],
-        eventlength: eventlength,
-        format: format,
-        zone: zone,
-        notes: notes,
-        link: link,
-        tableto: tableto,
-      });
-    }
-
-    $table.bootstrapTable("load", tabledata);
-    dateFilter();
-  }
-};
 
 function discordFormatter(value, row) {
   if (row.link.length > 0) {
@@ -105,9 +61,36 @@ $filterDate.on("click", function () {
   dateFilter();
 });
 
-xmlhttp.open(
-  "GET",
-  "https://spreadsheets.google.com/feeds/list/1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc/od6/public/values?alt=json",
-  true
-);
-xmlhttp.send();
+fetch(
+  `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json`
+)
+  .then((res) => res.text())
+  .then((text) => {
+    const json = JSON.parse(text.substr(47).slice(0, -2));
+
+    const data = json.table.rows;
+    for (let i = 0; i < data.length; i++) {
+      let event = data[i].c[0] === null ? "" : data[i].c[0].v;
+      let startdate = data[i].c[1] === null ? "" : data[i].c[1];
+      let eventDate = new Date(startdate.f);
+      let eventlength = data[i].c[2] === null ? "" : data[i].c[2].v;
+      let format = data[i].c[3] === null ? "" : data[i].c[3].v;
+      let zone = data[i].c[4] === null ? "" : data[i].c[4].v;
+      let notes = data[i].c[5] === null ? "" : data[i].c[5].v;
+      let link = data[i].c[10] === null ? "" : data[i].c[10].v;
+      let tableto = data[i].c[12] === null ? "" : data[i].c[12].v;
+
+      tabledata.push({
+        event: event,
+        startdate: eventDate.toISOString().split("T")[0],
+        eventlength: eventlength,
+        format: format,
+        zone: zone,
+        notes: notes,
+        link: link,
+        tableto: tableto,
+      });
+      $table.bootstrapTable("load", tabledata);
+      dateFilter();
+    }
+  });
