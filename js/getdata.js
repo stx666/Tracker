@@ -95,5 +95,6 @@ fetch(
       });
       $table.bootstrapTable("load", tabledata);
       dateFilter();
+      $("#loading").hide();
     }
   });
