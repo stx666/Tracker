@@ -1,5 +1,6 @@
 const $filterDate = $("#switchPastEvents");
 const $table = $("#table");
+const $tableSearch = $("#seachTable");
 const spreadsheetId = "1FlL3OlZPGTMZF_lWH8l_VzyweMmtOpENRv0jkxZK8rc";
 let tabledata = [];
 
@@ -29,6 +30,7 @@ function tabletoFormatter(value, row) {
 
 function dateFilter() {
   let currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1);
   let hideDates = $filterDate.is(":checked");
   $("#table tbody tr").each(
     function () // iterate through each tr inside the table
@@ -47,7 +49,7 @@ function dateFilter() {
   );
 }
 
-$("#seachTable").on("keyup", function () {
+$tableSearch.on("keyup", function () {
   var value = $(this).val().toLowerCase();
   $("#table tbody tr").filter(function () {
     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
